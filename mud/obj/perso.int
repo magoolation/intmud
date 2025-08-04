@@ -1,17 +1,17 @@
 classe comum_perso
 herda comum_persoitem
 # Personagem sem estrutura de batalha
-const perso = 1 # Para identificar que é personagem
-const persopnj = tseguir != 3 || !iseguir # Classificado como PNJ se não tiver dono
-comum listaobj objsolto # Lista de personagens soltos (não pertencem a outros)
-const jogperm = sock.jogperm # Permissões do personagem
-const jogarea = sock.jogarea # Área aonde tem permissão
-int1 jogconfig.32 # Configurações do personagem, mesmo que sock.jogconfig
+const perso = 1 # Para identificar que ï¿½ personagem
+const persopnj = tseguir != 3 || !iseguir # Classificado como PNJ se nï¿½o tiver dono
+comum listaobj objsolto # Lista de personagens soltos (nï¿½o pertencem a outros)
+const jogperm = sock.jogperm # Permissï¿½es do personagem
+const jogarea = sock.jogarea # ï¿½rea aonde tem permissï¿½o
+int1 jogconfig.32 # Configuraï¿½ï¿½es do personagem, mesmo que sock.jogconfig
 const tipo1 = config:p_tipo1 # Tipo de personagem
 const tipo2 = config:p_tipo2 # Segundo tipo do personagem
 const tipo3 = config:p_tipo3 # Terceiro tipo do personagem
 sav int1 psexo # Sexo do personagem: 0=feminino, 1=masculino
-const sexoini = 2 # Sexo inicial: 0=feminino, 1=masculino, 2=aleatório
+const sexoini = 2 # Sexo inicial: 0=feminino, 1=masculino, 2=aleatï¿½rio
 const msexo = 2 # Sexo nas mensagens: 0=feminino, 1=masculino, 2=psexo
 const msexo2 = int(var.z_msexo ?? (msexo == 2 ? psexo : msexo))
 const nome = "sem nome"
@@ -26,29 +26,29 @@ const objlimite = config:p_objlimite
 const pesomax = 1000000 # Para poder receber itens
 const persoesc = este # Personagem escolhido; alguns comandos usam
 const persobat = este # Personagem usado na batalha; alguns comandos usam
-const pvidaok = 1 # Para não dizer que o alvo está desmaiado
-const pvida = 1000 # Para não dizer que o alvo está desmaiado
+const pvidaok = 1 # Para nï¿½o dizer que o alvo estï¿½ desmaiado
+const pvida = 1000 # Para nï¿½o dizer que o alvo estï¿½ desmaiado
 const msg = sock.msg(arg0) # Mensagem pequena para o jogador
 const msg2 = sock.msg2(arg0) # Mensagem grande para o jogador
 const msgsom = sock.msgsom(arg0) # Mensagem de som
-ref sock # Objeto do jogador, se nulo não é contolado pelo jogador
+ref sock # Objeto do jogador, se nulo nï¿½o ï¿½ contolado pelo jogador
 const objsav = 2 # Se deve salvar o personagem ao salvar personagem do jogador
-const luztipo = 1 # 1=não é fonte de luz, mas repassa a luz
-sav uint16 pnivel # Nível atual (apenas para mostrar ao jogador)
-sav uint32 mortes # Quantas vezes morreu (chamou a função morreu)
-inttempo p_espera # Tempo de espera para o próximo comando
-txt100 p_comando # Próximo comando (usado no comando Ordenar)
-sav uint8 posicao # Posição do personagem
-const pospadr = 8 # Posição padrão do personagem
-sav uint8 pnumero # Número do personagem ou 0 se não tem dono
-sav listaitem poslugar # Em qual móvel o personagem está sentado/deitado/montado
-sav listaobj persolugar # Quem está montado
-sav listaitem iempu # Arma que está empunhando
-txt12 tipoiteminv2 # Tipos de item no inventário ou "" se precisa calcular
+const luztipo = 1 # 1=nï¿½o ï¿½ fonte de luz, mas repassa a luz
+sav uint16 pnivel # Nï¿½vel atual (apenas para mostrar ao jogador)
+sav uint32 mortes # Quantas vezes morreu (chamou a funï¿½ï¿½o morreu)
+inttempo p_espera # Tempo de espera para o prï¿½ximo comando
+txt100 p_comando # Prï¿½ximo comando (usado no comando Ordenar)
+sav uint8 posicao # Posiï¿½ï¿½o do personagem
+const pospadr = 8 # Posiï¿½ï¿½o padrï¿½o do personagem
+sav uint8 pnumero # Nï¿½mero do personagem ou 0 se nï¿½o tem dono
+sav listaitem poslugar # Em qual mï¿½vel o personagem estï¿½ sentado/deitado/montado
+sav listaobj persolugar # Quem estï¿½ montado
+sav listaitem iempu # Arma que estï¿½ empunhando
+txt12 tipoiteminv2 # Tipos de item no inventï¿½rio ou "" se precisa calcular
 txt12 tipoitemvestir2 # Tipos de item vestindo ou "" se precisa calcular
 inttempo p_proc # Para processar comportamento do personagem
-const p_fome = 100 # Não está com fome
-const p_sede = 100 # Não está com sede
+const p_fome = 100 # Nï¿½o estï¿½ com fome
+const p_sede = 100 # Nï¿½o estï¿½ com sede
 intdec p_tmove # Quanto tempo para se mover novamente
 const p_movervel = config:p_movervel
 const lojainvisivel = perso_cfg:loja_invisivel
@@ -161,7 +161,7 @@ func ini # Coloca o objeto dentro de outro
 
 func fim # Objeto foi apagado
   se !sock
-  senao jog # Jogador controlando o próprio personagem
+  senao jog # Jogador controlando o prï¿½prio personagem
     casovar txt1(sock.info)
     casose "t" # Conectado via Papovox
     casose "p" # Conectado via Telnet
@@ -183,7 +183,7 @@ func fim # Objeto foi apagado
   contr.persoesc == este && (contr.persoesc = contr)
   persolugar.limpar, batalhafim, comum_obj:fim, dono = nulo
 
-func contr # Quem está controlando o personagem
+func contr # Quem estï¿½ controlando o personagem
   ret dono.perso, ref(dono)
   ret tseguir != 3 || p_animal != 3 || iseguir.objlista.dono != dono, este
   ret ref(iseguir.objlista)
@@ -197,12 +197,12 @@ func temdomador # Retorna verdadeiro se pertence a outro personagem
 
 func mudadono # Coloca personagem em outra sala ou outro personagem
 # arg0 = nova sala ou novo personagem
-# arg1 = quantidade (é ignorado por essa função)
+# arg1 = quantidade (ï¿½ ignorado por essa funï¿½ï¿½o)
   listaobj l
   ref contr1 = dono.perso ? dono : tseguir == 3 ? iseguir.objlista
 # Muda de sala
 # Nota: mdono() checa const persopnj, que checa iseguir e tseguir
-# Por isso, é preciso acertar iseguir e tseguir antes de chamar mdono()
+# Por isso, ï¿½ preciso acertar iseguir e tseguir antes de chamar mdono()
   poslugar && poslugar.objlista.dono != arg0 && poslugar.remove
   se arg0.perso # Vai para um personagem
     tseguir = 0, iseguir.remove, persolugar.limpar, p_proc = 1
@@ -221,7 +221,7 @@ func mudadono # Coloca personagem em outra sala ou outro personagem
     contr1.persoesc == este && (contr1.persoesc = contr1)
     contr2.acertanumero
   fimse
-# Eventos cmd_mudadono, cmd_saiu e variável donoantes.s_item
+# Eventos cmd_mudadono, cmd_saiu e variï¿½vel donoantes.s_item
   cmd_mudadono
   se donoantes && !donoantes.perso
     se !sock
@@ -238,7 +238,7 @@ func mudadono # Coloca personagem em outra sala ou outro personagem
       l.objini.cmd_saiu(este, salasaiu, salasaiu)
     efim
   fimse
-# Checa se novo dono é personagem
+# Checa se novo dono ï¿½ personagem
   ret !dono || dono.perso, este
 # Eventos cmd_chegou
   (sock || jog) && dono.s_reset1, dono.cmd_salaperso(este)
@@ -256,7 +256,7 @@ func mudadono # Coloca personagem em outra sala ou outro personagem
       d.agora, var.area_[dono.s_area]_ = d.numtotal
     fimse
     casovar int(dono.s_retornar(este))
-    casose "3" # Muda o ponto de retorno se não possuir
+    casose "3" # Muda o ponto de retorno se nï¿½o possuir
       sair var.z_salafim
     casose "2" # Muda o ponto de retorno
       var.z_salafim = dono
@@ -266,7 +266,7 @@ func mudadono # Coloca personagem em outra sala ou outro personagem
       (l.objini.p_agressivo(este) == 2 || l.objini.var.r_[nome]_) && (l.objini.p_proc = 1)
     efim
   fimse
-# Mostra descrição (jogador) ou processamento do personagem (não jogador)
+# Mostra descriï¿½ï¿½o (jogador) ou processamento do personagem (nï¿½o jogador)
   se !sock
     p_proc = 1
   senao dono.s_ocultar(este)
@@ -284,7 +284,7 @@ func mudadono # Coloca personagem em outra sala ou outro personagem
     l.addfim(persolugar, poslugar.objlista, poslugar.objlista.persolugar)
     msg2(dono.descsala(este, cfg, l))
   fimse
-# Move quem está montado
+# Move quem estï¿½ montado
   l.limpar
   epara l.addfim(persolugar), l, l.ini.remove
     l.objini.mudadono(dono, 1)
@@ -294,12 +294,12 @@ func mudadono # Coloca personagem em outra sala ou outro personagem
 func mudaobjeto # Muda o objeto desse personagem
 # Tecnicamente, cria um objeto de personagem, coloca no lugar desse e apaga esse objeto
 # arg0 = nome da classe
-# Retorna o objeto do novo personagem ou null se não mudou
+# Retorna o objeto do novo personagem ou null se nï¿½o mudou
   ret txt(este, 0, 2) != "p_" || !perso || perso !== [arg0]:perso, nulo
   ref r = criar(arg0, dono)
   ret !r, nulo
   apagar(este)
-# Acerta variáveis
+# Acerta variï¿½veis
   r.var = var
   r.psexo = psexo
   r.pnivel = pnivel
@@ -314,7 +314,7 @@ func mudaobjeto # Muda o objeto desse personagem
   r.p_proc = p_proc
   r.p_tmove = p_tmove
   r.pnumero = pnumero
-# Acerta posição no dono
+# Acerta posiï¿½ï¿½o no dono
   r.donoantes = donoantes
   r.idono.remove, r.idono = idono.adddepois(r)
 # Acerta seguir
@@ -329,14 +329,14 @@ func mudaobjeto # Muda o objeto desse personagem
   epara nulo, persolugar, persolugar.ini.remove
     persolugar.objini.poslugar = r.persolugar.addfim(persolugar.objini)
   efim
-# Acerta quem está lutando
+# Acerta quem estï¿½ lutando
   r.atktempo = atktempo
   r.atkdanos = atkdanos
   r.atkenv = atkenv.objlista.atkrec.addfim(r), atkenv.remove
   epara nulo, atkrec, atkrec.ini.remove
     atkrec.objini.atkenv = r.atkrec.addfim(atkrec.objini)
   efim
-# Acerta quem recebe experiência desse personagem
+# Acerta quem recebe experiï¿½ncia desse personagem
   epara nulo, atkdiv, atkdiv.ini.remove
     r.atkdiv.addfim(atkdiv.objini)
   efim
@@ -356,13 +356,13 @@ func mudaobjeto # Muda o objeto desse personagem
   sock.mudaperso(r)
   ret r
 
-func mudaobjdono # Objeto dono foi substituído por outro
+func mudaobjdono # Objeto dono foi substituï¿½do por outro
 # arg0 = antigo dono, arg1 = novo dono
   mdono(arg1)
 
 func mudadomador # Muda o domador
-# arg0 = domador (personagem) ou nulo se não deve pertencer a um domador
-# Não tem efeito se estiver no comando Animal (estiver em outro personagem)
+# arg0 = domador (personagem) ou nulo se nï¿½o deve pertencer a um domador
+# Nï¿½o tem efeito se estiver no comando Animal (estiver em outro personagem)
   ret dono.perso, nulo
   ref alvo = arg0
   iseguir.objlista.persoesc == este && (iseguir.objlista.persoesc = iseguir.objlista)
@@ -391,7 +391,7 @@ func montar # Monta em arg0 (ou desmonta, se arg0 for nulo)
     posicao = 8
   fimse
 
-func cabedentro # Retorna 1 se personagem cabe em uma sala ou 0 se não cabe
+func cabedentro # Retorna 1 se personagem cabe em uma sala ou 0 se nï¿½o cabe
 # arg0 = sala
   ret !arg0.s_sala, 0
   listaitem i
@@ -423,7 +423,7 @@ func tipoitemvestir
   efim
   ret tipoitemvestir2
 
-func positemtotal # Retorna as posições aonde pode vestir itens
+func positemtotal # Retorna as posiï¿½ï¿½es aonde pode vestir itens
   txt100 lin
   txt12 pos
   lin = "t_" + tipo1
@@ -434,7 +434,7 @@ func positemtotal # Retorna as posições aonde pode vestir itens
   pos = (([lin]:equip1 ?? pos) | [lin]:equip2) & ~txthex([lin]:equip3, 12)
   ret ((equip1 ?? pos) | equip2) & ~txthex(equip3, 12)
 
-func positemvestir # Retorna as posições aonde está usando alguma coisa
+func positemvestir # Retorna as posiï¿½ï¿½es aonde estï¿½ usando alguma coisa
   txt12 vest1
   listaitem item
   epara item = dentro2.ini, item, item.depois
@@ -444,20 +444,20 @@ func positemvestir # Retorna as posições aonde está usando alguma coisa
   efim
   ret vest1
 
-func objitemvestir # Retorna primeiro item em uma das posições
-# arg0 = posições (texto hexadecimal)
+func objitemvestir # Retorna primeiro item em uma das posiï¿½ï¿½es
+# arg0 = posiï¿½ï¿½es (texto hexadecimal)
   listaitem item
   epara item = dentro2.ini, item, item.depois
     ret arg0 & item.obj.vestpos2 != "0", ref(item.obj)
   efim
 
-func varherda # Obtém variável do personagem, do tipo ou de perso_cfg
-# arg0 = nome da variável
+func varherda # Obtï¿½m variï¿½vel do personagem, do tipo ou de perso_cfg
+# arg0 = nome da variï¿½vel
   refvar m = txt([arg0]) ?? txt($t_[tipo1].[arg0](este)) ?? txt($t_[tipo2].[arg0](este))
   ret m ?? txt($t_[tipo3].[arg0](este)) ?? txt(perso_cfg:[arg0])
 
-func recalc_exec # Ajusta variáveis
-# Acerta atributos básicos
+func recalc_exec # Ajusta variï¿½veis
+# Acerta atributos bï¿½sicos
   bitver = 17, bitinv = 3
 # Acerta atributos conforme o tipo de personagem
   config:atribcfg, recalc1_auto
@@ -469,7 +469,7 @@ func recalc_exec # Ajusta variáveis
   epara lin = var.ini("f_"), lin, lin = var.depois(lin, "f_")
     [lin]:recalc2_auto, $[lin].cmd_recalc2(este)
   efim
-# Efeitos conforme o que está vestindo
+# Efeitos conforme o que estï¿½ vestindo
   listaitem i
   epara i = dentro2.ini, i, i.depois
     [i.obj]:recalc2_auto, i.obj.cmd_recalc2(este)
@@ -487,13 +487,13 @@ func teclou # Processa comando
 # arg0=comando
   teclouperm(arg0, $perm_[jogperm])
 
-func teclouperm # Processa comando com permissões específicas
+func teclouperm # Processa comando com permissï¿½es especï¿½ficas
 # arg0 = comando
-# arg1 = objeto perm que contém as permissões
+# arg1 = objeto perm que contï¿½m as permissï¿½es
   ref obj # Objeto que vai processar o comando
   prog p # Para procurar o objeto
   ret !arg0, nulo
-# Obtém o comando
+# Obtï¿½m o comando
   enquanto 1
     se arg0 == intpos(arg0) && config:animal1 >= arg0 && config:animal1
       obj = $comando_escolhe_animal
@@ -528,17 +528,17 @@ func teclouperm # Processa comando com permissões específicas
     ret l.objini.cmd_escr(este, arg0, obj), nulo
   efim
 # Executa comando
-  ret !obj, msg("O quê?")
+  ret !obj, msg("O quï¿½?")
   ret posicao < obj.posic, msgposicao
   ret obj.escr(este, txt2(arg0), arg1)
 
-func p_espera_exec # Pega o próximo comando
+func p_espera_exec # Pega o prï¿½ximo comando
   sock ? sock.espera_exec : p_comando ? teclou(p_comando) : p_proc_exec
   p_comando = ""
 
-func podeposicao # Verifica se uma posição é válida para o personagem
-# arg0 = posição (vide variável posicao) ou "M" se for montar
-# Retorna 1 se posição válida ou 0 se não for
+func podeposicao # Verifica se uma posiï¿½ï¿½o ï¿½ vï¿½lida para o personagem
+# arg0 = posiï¿½ï¿½o (vide variï¿½vel posicao) ou "M" se for montar
+# Retorna 1 se posiï¿½ï¿½o vï¿½lida ou 0 se nï¿½o for
   casovar arg0
   casose "4" # Dormir
     ret bitver & 0x800, 0
@@ -552,8 +552,8 @@ func podeposicao # Verifica se uma posição é válida para o personagem
   casofim
   ret 1
 
-func msgposicao # Envia uma mensagem conforme a posição
-# arg0 = quem recebe a mensagem; se for nulo é o próprio personagem
+func msgposicao # Envia uma mensagem conforme a posiï¿½ï¿½o
+# arg0 = quem recebe a mensagem; se for nulo ï¿½ o prï¿½prio personagem
   se arg0 && arg0 != este
     arg0.msg($mensjog.txt(perso_cfg:posicao[intmin(posicao, 8)]b, este))
   senao
@@ -613,10 +613,10 @@ func descpos
   $mens.p(este)
   ret $mens.txt(descsalaN(arg0), arg0)
 
-func acertanumero # Acerta os números dos animais que possui (variáveis pnumero)
+func acertanumero # Acerta os nï¿½meros dos animais que possui (variï¿½veis pnumero)
   listaobj l
   listaitem i
-  int32 mask = (2 << config:animal1) - 2 # bits 1 são as posições disponíveis
+  int32 mask = (2 << config:animal1) - 2 # bits 1 sï¿½o as posiï¿½ï¿½es disponï¿½veis
   epara i = dentro2.ini, i, i.depois
     continuar !i.obj.perso
     se i.obj.pnumero <= 30 && (mask & intbit(i.obj.pnumero))
@@ -648,7 +648,7 @@ func acertanumero # Acerta os números dos animais que possui (variáveis pnumero)
 func msgvis # Mensagem se o jogador estiver vendo o alvo
   ret $mens.msgvis(arg0, este)
 
-func msginv # Mensagem mesmo se o alvo estiver invisível
+func msginv # Mensagem mesmo se o alvo estiver invisï¿½vel
   ret $mens.msginv(arg0, este)
 
 func morreu # Procedimentos quando morre
@@ -696,27 +696,27 @@ func morreu # Procedimentos quando morre
 
 func p_proc_exec # Processar comportamento do personagem
   ret este != contr || tseguir == 3, nulo # Retorna se pertence a outro personagem
-  ret sock, nulo # Retorna se está sendo controlado por jogador
+  ret sock, nulo # Retorna se estï¿½ sendo controlado por jogador
   ret p_espera, p_proc = p_espera + 1 # Checa tempo para agir
 # Evento do personagem
   ret cmd_pnj_proc, nulo
-# Ações do personagem
-  ret posicao <= 4, nulo # Não faz nada se está dormindo
-  ret p_tmove, p_proc = p_tmove + 1 # Retorna se não é hora de se movimentar
+# Aï¿½ï¿½es do personagem
+  ret posicao <= 4, nulo # Nï¿½o faz nada se estï¿½ dormindo
+  ret p_tmove, p_proc = p_tmove + 1 # Retorna se nï¿½o ï¿½ hora de se movimentar
   ret p_comecorpo && posicao >= 5 && p_proc_comecorpo, nulo
   ret p_mover && posicao == 8 && p_proc_mover, nulo
   p_mover && (p_proc = 50)
 
 func p_proc_comecorpo # Personagem tenta comer corpos
-# Retorna: 1=conseguiu comer, 0=não conseguiu
+# Retorna: 1=conseguiu comer, 0=nï¿½o conseguiu
   ref r
   ret !(r = dono.dentro1.objini("comum_corpo")), 0
   ret !$cmd_comer.comer(este, r), 0
   p_tmove = rand(70, 130) * p_movervel / 100, p_proc = p_tmove + 1
   ret 1
 
-func p_proc_mover # Personagem tenta se movimentar em uma direção aleatória
-# Retorna: 1=conseguiu se movimentar, 0=não conseguiu
+func p_proc_mover # Personagem tenta se movimentar em uma direï¿½ï¿½o aleatï¿½ria
+# Retorna: 1=conseguiu se movimentar, 0=nï¿½o conseguiu
   textotxt t
   prog p
   ref r = dono
@@ -731,9 +731,9 @@ func p_proc_mover # Personagem tenta se movimentar em uma direção aleatória
     ret r != dono
   efim
 
-func p_proc_dir # Personagem tenta se movimentar em uma direção específica
-# arg0 = direção
-# Retorna: 1=conseguiu se movimentar, 0=não conseguiu
+func p_proc_dir # Personagem tenta se movimentar em uma direï¿½ï¿½o especï¿½fica
+# arg0 = direï¿½ï¿½o
+# Retorna: 1=conseguiu se movimentar, 0=nï¿½o conseguiu
   ref r = dono
   $cmd_[arg0].escr(este)
   ret r != dono

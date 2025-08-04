@@ -1,0 +1,25 @@
+classe adm_anatomia
+herda comando_adm
+const txtajuda = "\b\c3Anatomia\b\n\
+Sintaxe: ANATOMIA <personagem> <tipo>\n\
+Define o tipo de anatomia de um personagem.\n\
+Tipos disponíveis: humanoide, quadrupede, ave, inseto"
+
+func escr
+  ret !arg1, arg0.msg("Digite: ANATOMIA <personagem> <tipo>")
+  
+  # Separar argumentos
+  txt100 nome = txt1(arg1)
+  txt100 tipo = txt2(arg1)
+  
+  # Obter personagem
+  refvar perso = misc:personum(arg0, nome)
+  ret !perso, arg0.msg("Personagem não encontrado.")
+  
+  # Verificar tipo de anatomia
+  refvar anat = $anatomia_[tipo]
+  ret !anat, arg0.msg("Tipo de anatomia inválido.")
+  
+  # Aplicar anatomia
+  perso.p_anatomia = tipo
+  arg0.msg("Anatomia de " + perso.nome + " alterada para: " + anat.nome)

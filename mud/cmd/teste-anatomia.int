@@ -1,0 +1,25 @@
+classe cmd_testeanatomia
+herda comando_comum
+const txtajuda = "Testa o sistema de anatomia"
+
+func escr
+  ret !arg0.perm.c_teste, arg0.msg("Sem permissão para testes.")
+  
+  # Testar sorteio de partes
+  refvar anat = arg0.anatomia_tipo
+  arg0.msg("Sua anatomia: " + anat.nome)
+  arg0.msg("Partes disponíveis:")
+  
+  textotxt t
+  t.addfim(anat.partes)
+  enquanto t.linhas
+    arg0.msg("- " + t.remove)
+  efim
+  
+  # Simular 10 ataques
+  arg0.msg("\nSimulando 10 ataques:")
+  int8 x
+  epara x = 0, x < 10, x++
+    txt100 parte = comando_ataque:sortear_parte(arg0)
+    arg0.msg("Ataque " + (x+1) + ": " + parte)
+  efim

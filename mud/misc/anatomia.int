@@ -1,0 +1,34 @@
+classe anatomia_cfg
+# Configurações globais de anatomia
+const admordem = "m_sempartes"
+const m_sempartes = "Você atinge $a."
+
+classe anatomia_base
+# Classe base para tipos de anatomia
+const nome = "genérica"
+const partes = "corpo"
+const peso = "100"  # Peso relativo de cada parte para sorteio
+
+classe anatomia_humanoide
+herda anatomia_base
+const nome = "humanóide"
+const partes = "cabeça\ntronco\nbraço direito\nbraço esquerdo\nperna direita\nperna esquerda"
+const peso = "10\n40\n15\n15\n10\n10"  # Total = 100
+
+classe anatomia_quadrupede
+herda anatomia_base
+const nome = "quadrúpede"
+const partes = "cabeça\ndorso\npata dianteira direita\npata dianteira esquerda\npata traseira direita\npata traseira esquerda\ncauda"
+const peso = "10\n35\n10\n10\n10\n10\n15"  # Total = 100
+
+classe anatomia_ave
+herda anatomia_base
+const nome = "ave"
+const partes = "cabeça\npeito\nasa direita\nasa esquerda\ncauda"
+const peso = "15\n40\n20\n20\n5"  # Total = 100
+
+classe anatomia_inseto
+herda anatomia_base
+const nome = "inseto"
+const partes = "cabeça\ntórax\nabdômen"
+const peso = "20\n40\n40"  # Total = 100
